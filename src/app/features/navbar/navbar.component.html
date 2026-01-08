@@ -1,0 +1,36 @@
+<!-- <nav class="navbar">
+  <div class="user-info" (click)="toggleDropdown()">
+    <span>{{ username }}</span>
+    <div class="dropdown-content" *ngIf="dropdownVisible">
+      <p><a href="#">Perfil</a></p>
+      <p><a href="#">Configuraciones</a></p>
+      <p><a href="#" (click)="logout()">Logout</a></p>
+    </div>
+  </div>
+</nav> -->
+
+<mat-toolbar>
+
+  <mat-toolbar-row>
+    <h1>My List App</h1>
+    <span class="example-spacer"></span>
+
+
+
+    <mat-icon [matMenuTriggerFor]="menu" class="settings" aria-hidden="false"
+      aria-label="Settings">manage_accounts</mat-icon>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>{{username}}</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Exit app</span>
+      </button>
+    </mat-menu>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>

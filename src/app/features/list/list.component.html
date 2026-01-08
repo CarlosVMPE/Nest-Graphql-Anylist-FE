@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="list-container" *ngIf="loading; else listTemplate">
+    <div class="list-item skeleton-item">
+      <h2 class="list-title skeleton-title"></h2>
+      <p class="item-count skeleton-count"></p>
+    </div>
+    <div class="list-item skeleton-item">
+      <h2 class="list-title skeleton-title"></h2>
+      <p class="item-count skeleton-count"></p>
+    </div>
+    <div class="list-item skeleton-item">
+      <h2 class="list-title skeleton-title"></h2>
+      <p class="item-count skeleton-count"></p>
+    </div>
+  </div>
+
+  <ng-template #listTemplate>
+    <div class="list-container">
+
+      <p *ngIf="lists.length == 0">There's no items in the list.</p>
+
+      <mat-accordion [style]="{ width: '100%' }">
+        <mat-expansion-panel style="padding: 6px 0;" *ngFor="let list of lists; let i = index" [(expanded)]="expandedPanels[i]">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="list-title">
+              {{ list.name }}
+            </mat-panel-title>
+            <mat-panel-description class="item-count">
+              Total Items: {{ list.totalItems }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let itemProd of list.items" class="item-detail">
+            <mat-checkbox [checked]="itemProd.completed" (click)="updateItem(list.id, itemProd.id, itemProd.item.id, itemProd.completed, i)"></mat-checkbox>
+            <p>{{ itemProd.item.name }}</p>
+          </div>
+
+          <mat-paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event, i)"
+               [length]="list.totalItems"
+               [pageSize]="pageSizes[i]"
+               [disabled]="disabled"
+               [showFirstLastButtons]="showFirstLastButtons"
+               [pageSizeOptions]="[]"
+               [hidePageSize]="hidePageSize"
+               [pageIndex]="pageIndexes[i]"
+               aria-label="Select page">
+        </mat-paginator>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </ng-template>
+
+</div>

@@ -1,0 +1,7 @@
+h1{
+  flex-grow: 2;
+}
+
+.settings{
+  cursor: pointer;
+}
